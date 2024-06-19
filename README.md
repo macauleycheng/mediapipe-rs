@@ -92,6 +92,9 @@ Every task has three types: ```XxxBuilder```, ```Xxx```, ```XxxSession```. (``Xx
 
 ## Examples
 
+## Prepare:
+The model and test data can use scripts/{download-models.sh, download-testdata.sh} to get it.
+
 ### Image classification
 
 ```rust
@@ -113,6 +116,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 ```
 
 Example input: (The image is downloaded from https://storage.googleapis.com/mediapipe-assets/burger.jpg)
+
 
 <img height="30%" src="https://storage.googleapis.com/mediapipe-assets/burger.jpg" width="30%" alt="burger.jpg" />
 
@@ -168,7 +172,7 @@ from https://storage.googleapis.com/mediapipe-tasks/object_detector/cat_and_dog.
 Example output in console:
 
 ```console
-$ cargo run --release --example object_detection -- ./assets/models/object_detection/efficientdet_lite0_fp32.tflite ./assets/testdata/img/cat_and_dog.jpg
+$ cargo run --release --example object_detection -- ./assets/models/object_detection/efficientdet_lite0_fp32.tflite ./assets/testdata/img/cat_and_dog.jpg output.jpg
     Finished release [optimized] target(s) in 0.00s
      Running `/mediapipe-rs/./scripts/wasmedge-runner.sh target/wasm32-wasi/release/examples/object_detection.wasm ./assets/models/object_detection/efficientdet_lite0_fp32.tflite ./assets/testdata/img/cat_and_dog.jpg`
 DetectionResult:
@@ -187,7 +191,9 @@ DetectionResult:
       Score:         0.8375256
       Index:         17
 ```
-
+```
+wasmedge run --dir=. target/wasm32-wasi/release/examples/object_detection.wasm  ./assets/models/object_detection/efficientdet_lite0_fp32.tflite ./assets/testdata/img/cat_and_dog.jpg output.jpg
+```
 Example output:
 <img height="30%" src="./assets/doc/cat_and_dog_detection.jpg" width="30%"/>
 
