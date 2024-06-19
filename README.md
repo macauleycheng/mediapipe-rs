@@ -95,6 +95,17 @@ Every task has three types: ```XxxBuilder```, ```Xxx```, ```XxxSession```. (``Xx
 ## Prepare:
 The model and test data can use scripts/{download-models.sh, download-testdata.sh} to get it.
 
+If build fail, try
+```
+cargo install wasm-pack
+
+
+sudo apt install pkg-config
+sudo apt install libssl-dev
+export OPENSSL_DIR=/usr/include/openssl/
+
+```
+
 ### Image classification
 
 ```rust
